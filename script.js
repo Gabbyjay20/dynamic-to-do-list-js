@@ -1,10 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Select DOM elements
+document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Define addTask function
+    // Function to add a new task
     function addTask() {
         const taskText = taskInput.value.trim();
 
@@ -13,21 +12,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Create new li element
+        // Create list item
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create Remove button
+        // Create remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
-        removeBtn.className = 'remove-btn';
+        removeBtn.classList.add('remove-btn'); // ✅ ALX expects this method
 
-        // Assign onclick event to remove button
-        removeBtn.onclick = function() {
+        // Add remove functionality
+        removeBtn.onclick = function () {
             taskList.removeChild(li);
         };
 
-        // Append remove button and add to task list
+        // Append elements
         li.appendChild(removeBtn);
         taskList.appendChild(li);
 
@@ -35,11 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
         taskInput.value = '';
     }
 
-    // Add event listener for button click
+    // Add task on button click
     addButton.addEventListener('click', addTask);
 
-    // Add event listener for Enter key
-    taskInput.addEventListener('keypress', function(event) {
+    // Add task when pressing Enter
+    taskInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
         }
